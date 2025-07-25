@@ -1,161 +1,280 @@
 <template>
   <div
-    class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+    class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
   >
-    <div class="max-w-md w-full space-y-8">
-      <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-hero-pattern opacity-30"></div>
+    <div
+      class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary-300/20 to-secondary-300/20 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"
+    ></div>
+    <div
+      class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-accent-300/20 to-primary-300/20 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"
+    ></div>
+
+    <div class="max-w-md w-full space-y-8 relative z-10 animate-fade-in">
+      <!-- Header -->
+      <div class="text-center">
+        <div class="flex justify-center mb-6">
+          <div
+            class="p-4 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl shadow-colored"
+          >
+            <UserPlusIcon iconClass="h-8 w-8 text-white" />
+          </div>
+        </div>
+        <h2
+          class="text-4xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"
+        >
           Create your account
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
-          Or
+        <p class="mt-3 text-neutral-600">
+          Join us and start your journey today
+        </p>
+        <p class="mt-2 text-sm text-neutral-500">
+          Already have an account?
           <router-link
             to="/signin"
-            class="font-medium text-primary-600 hover:text-primary-500"
+            class="font-semibold text-primary-600 hover:text-primary-700 transition-colors duration-200 hover:underline"
           >
-            sign in to your existing account
+            Sign in here
           </router-link>
         </p>
       </div>
 
-      <form class="mt-8 space-y-6" @submit.prevent="handleSubmit">
-        <div class="rounded-md shadow-sm -space-y-px">
-          <div>
-            <label for="name" class="sr-only">Full name</label>
-            <input
-              id="name"
-              v-model="form.name"
-              name="name"
-              type="text"
-              required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
-              :class="{ 'border-red-500': errors.name }"
-              placeholder="Full name"
-              @blur="validateName"
-              @input="clearFieldError('name')"
-            />
-            <p v-if="errors.name" class="mt-1 text-sm text-red-600">
-              {{ errors.name }}
-            </p>
+      <!-- Form Card -->
+      <div class="glass-card p-8 animate-slide-up">
+        <form class="space-y-6" @submit.prevent="handleSubmit">
+          <!-- Name Field -->
+          <div class="space-y-2">
+            <label
+              for="name"
+              class="block text-sm font-semibold text-neutral-700"
+            >
+              Full Name
+            </label>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+              >
+                <UserIcon iconClass="h-5 w-5 text-neutral-400" />
+              </div>
+              <input
+                id="name"
+                v-model="form.name"
+                name="name"
+                type="text"
+                required
+                class="input-field pl-10"
+                :class="{ 'ring-2 ring-red-400 border-red-400': errors.name }"
+                placeholder="Enter your full name"
+                @blur="validateName"
+                @input="clearFieldError('name')"
+              />
+            </div>
+            <transition name="slide-down">
+              <p
+                v-if="errors.name"
+                class="text-sm text-red-600 flex items-center"
+              >
+                <ErrorIcon iconClass="h-4 w-4 mr-1" />
+                {{ errors.name }}
+              </p>
+            </transition>
           </div>
 
-          <div>
-            <label for="email" class="sr-only">Email address</label>
-            <input
-              id="email"
-              v-model="form.email"
-              name="email"
-              type="email"
-              required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
-              :class="{ 'border-red-500': errors.email }"
-              placeholder="Email address"
-              @blur="validateEmail"
-              @input="clearFieldError('email')"
-            />
-            <p v-if="errors.email" class="mt-1 text-sm text-red-600">
-              {{ errors.email }}
-            </p>
+          <!-- Email Field -->
+          <div class="space-y-2">
+            <label
+              for="email"
+              class="block text-sm font-semibold text-neutral-700"
+            >
+              Email Address
+            </label>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+              >
+                <EmailIcon iconClass="h-5 w-5 text-neutral-400" />
+              </div>
+              <input
+                id="email"
+                v-model="form.email"
+                name="email"
+                type="email"
+                required
+                class="input-field pl-10"
+                :class="{ 'ring-2 ring-red-400 border-red-400': errors.email }"
+                placeholder="Enter your email address"
+                @blur="validateEmail"
+                @input="clearFieldError('email')"
+              />
+            </div>
+            <transition name="slide-down">
+              <p
+                v-if="errors.email"
+                class="text-sm text-red-600 flex items-center"
+              >
+                <ErrorIcon iconClass="h-4 w-4 mr-1" />
+                {{ errors.email }}
+              </p>
+            </transition>
           </div>
 
-          <div>
-            <label for="password" class="sr-only">Password</label>
-            <input
-              id="password"
-              v-model="form.password"
-              name="password"
-              type="password"
-              required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
-              :class="{ 'border-red-500': errors.password }"
-              placeholder="Password"
-              @blur="validatePassword"
-              @input="clearFieldError('password')"
-            />
-            <p v-if="errors.password" class="mt-1 text-sm text-red-600">
-              {{ errors.password }}
-            </p>
-            <div class="mt-2 text-sm text-gray-600">
-              <p>Password must contain:</p>
-              <ul class="list-disc list-inside space-y-1">
-                <li
-                  :class="
-                    passwordCriteria.length ? 'text-green-600' : 'text-red-600'
-                  "
-                >
-                  At least 8 characters
-                </li>
-                <li
-                  :class="
-                    passwordCriteria.hasLetter
-                      ? 'text-green-600'
-                      : 'text-red-600'
-                  "
-                >
-                  At least 1 letter
-                </li>
-                <li
-                  :class="
-                    passwordCriteria.hasNumber
-                      ? 'text-green-600'
-                      : 'text-red-600'
-                  "
-                >
-                  At least 1 number
-                </li>
-                <li
-                  :class="
-                    passwordCriteria.hasSpecial
-                      ? 'text-green-600'
-                      : 'text-red-600'
-                  "
-                >
-                  At least 1 special character
-                </li>
-              </ul>
+          <!-- Password Field -->
+          <div class="space-y-2">
+            <label
+              for="password"
+              class="block text-sm font-semibold text-neutral-700"
+            >
+              Password
+            </label>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+              >
+                <LockIcon iconClass="h-5 w-5 text-neutral-400" />
+              </div>
+              <input
+                id="password"
+                v-model="form.password"
+                name="password"
+                type="password"
+                required
+                class="input-field pl-10"
+                :class="{
+                  'ring-2 ring-red-400 border-red-400': errors.password,
+                }"
+                placeholder="Create a secure password"
+                @blur="validatePassword"
+                @input="clearFieldError('password')"
+              />
+            </div>
+            <transition name="slide-down">
+              <p
+                v-if="errors.password"
+                class="text-sm text-red-600 flex items-center"
+              >
+                <ErrorIcon iconClass="h-4 w-4 mr-1" />
+                {{ errors.password }}
+              </p>
+            </transition>
+
+            <!-- Password Strength Indicator -->
+            <div class="bg-neutral-50 rounded-lg p-4 border border-neutral-200">
+              <p class="text-sm font-medium text-neutral-700 mb-3">
+                Password requirements:
+              </p>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="flex items-center text-sm">
+                  <CheckCircleIcon
+                    :iconClass="`h-4 w-4 mr-2 ${passwordCriteria.length ? 'text-accent-500' : 'text-neutral-300'}`"
+                  />
+                  <span
+                    :class="
+                      passwordCriteria.length
+                        ? 'text-accent-600 font-medium'
+                        : 'text-neutral-500'
+                    "
+                  >
+                    8+ characters
+                  </span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <CheckCircleIcon
+                    :iconClass="`h-4 w-4 mr-2 ${passwordCriteria.hasLetter ? 'text-accent-500' : 'text-neutral-300'}`"
+                  />
+                  <span
+                    :class="
+                      passwordCriteria.hasLetter
+                        ? 'text-accent-600 font-medium'
+                        : 'text-neutral-500'
+                    "
+                  >
+                    1+ letter
+                  </span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <CheckCircleIcon
+                    :iconClass="`h-4 w-4 mr-2 ${passwordCriteria.hasNumber ? 'text-accent-500' : 'text-neutral-300'}`"
+                  />
+                  <span
+                    :class="
+                      passwordCriteria.hasNumber
+                        ? 'text-accent-600 font-medium'
+                        : 'text-neutral-500'
+                    "
+                  >
+                    1+ number
+                  </span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <CheckCircleIcon
+                    :iconClass="`h-4 w-4 mr-2 ${passwordCriteria.hasSpecial ? 'text-accent-500' : 'text-neutral-300'}`"
+                  />
+                  <span
+                    :class="
+                      passwordCriteria.hasSpecial
+                        ? 'text-accent-600 font-medium'
+                        : 'text-neutral-500'
+                    "
+                  >
+                    1+ special char
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div v-if="authStore.error" class="rounded-md bg-red-50 p-4">
-          <p class="text-sm text-red-800">{{ authStore.error }}</p>
-        </div>
+          <!-- Error Message -->
+          <transition name="slide-down">
+            <div
+              v-if="authStore.error"
+              class="bg-red-50 border border-red-200 rounded-xl p-4"
+            >
+              <div class="flex items-center">
+                <ErrorIcon iconClass="h-5 w-5 text-red-500 mr-3" />
+                <p class="text-sm font-medium text-red-800">
+                  {{ authStore.error }}
+                </p>
+              </div>
+            </div>
+          </transition>
 
-        <div>
+          <!-- Submit Button -->
           <button
             type="submit"
             :disabled="authStore.loading || !isFormValid"
-            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="btn-primary w-full relative overflow-hidden group"
           >
             <span
               v-if="authStore.loading"
-              class="absolute left-0 inset-y-0 flex items-center pl-3"
+              class="absolute inset-0 flex items-center justify-center"
             >
-              <svg
-                class="animate-spin h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  class="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  stroke-width="4"
-                ></circle>
-                <path
-                  class="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
+              <LoadingSpinner iconClass="h-5 w-5 text-white" />
             </span>
-            {{ authStore.loading ? "Creating account..." : "Create account" }}
+            <span :class="{ 'opacity-0': authStore.loading }">
+              {{ authStore.loading ? "Creating account..." : "Create account" }}
+            </span>
           </button>
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center text-sm text-neutral-500">
+        <p>By creating an account, you agree to our</p>
+        <div class="flex justify-center space-x-4 mt-1">
+          <a
+            href="#"
+            class="text-primary-600 hover:text-primary-700 transition-colors duration-200"
+            >Terms of Service</a
+          >
+          <span>&middot;</span>
+          <a
+            href="#"
+            class="text-primary-600 hover:text-primary-700 transition-colors duration-200"
+            >Privacy Policy</a
+          >
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </template>
@@ -262,3 +381,20 @@ onMounted(() => {
   authStore.clearError();
 });
 </script>
+
+<style scoped>
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-down-enter-from {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.slide-down-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+</style>

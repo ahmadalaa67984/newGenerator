@@ -7,3 +7,8 @@ export { default as SettingsIcon } from "./SettingsIcon.vue";
 export { default as ChartBarIcon } from "./ChartBarIcon.vue";
 export { default as SupportIcon } from "./SupportIcon.vue";
 export { default as LoadingSpinner } from "./LoadingSpinner.vue";
+export { default as EmailIcon } from "./EmailIcon.vue";
+export { default as ClockIcon } from "./ClockIcon.vue";
+export { default as LogoutIcon } from "./LogoutIcon.vue";
+export { default as ErrorIcon } from "./ErrorIcon.vue";
+export { default as HashIcon } from "./HashIcon.vue";
