@@ -14,13 +14,6 @@
     <div class="max-w-md w-full space-y-8 relative z-10 animate-fade-in">
       <!-- Header -->
       <div class="text-center">
-        <div class="flex justify-center mb-6">
-          <div
-            class="p-4 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl shadow-colored"
-          >
-            <UserPlusIcon iconClass="h-8 w-8 text-white" />
-          </div>
-        </div>
         <h2
           class="text-4xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"
         >

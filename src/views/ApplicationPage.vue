@@ -7,11 +7,6 @@
           <div class="flex items-center">
             <div class="flex-shrink-0">
               <div class="flex items-center">
-                <div
-                  class="p-2 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl shadow-colored mr-3"
-                >
-                  <LightningIcon iconClass="h-6 w-6 text-white" />
-                </div>
                 <h1
                   class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"
                 >
@@ -61,13 +56,7 @@
       <!-- Welcome Section -->
       <div class="mb-12 animate-fade-in">
         <div class="text-center">
-          <div class="flex justify-center mb-6">
-            <div
-              class="p-6 bg-gradient-to-br from-accent-400 to-primary-500 rounded-3xl shadow-large animate-pulse-slow"
-            >
-              <CheckCircleIcon iconClass="h-12 w-12 text-white" />
-            </div>
-          </div>
+          <div class="flex justify-center mb-6"></div>
           <h2
             class="text-4xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent mb-4"
           >
@@ -185,50 +174,6 @@
               </div>
               <HashIcon iconClass="h-8 w-8 text-neutral-400" />
             </div>
-          </div>
-        </div>
-
-        <!-- Quick Actions Card -->
-        <div class="card p-8">
-          <div class="flex items-center mb-6">
-            <div
-              class="p-3 bg-gradient-to-br from-accent-500 to-primary-500 rounded-xl shadow-colored"
-            >
-              <SettingsIcon iconClass="h-6 w-6 text-white" />
-            </div>
-            <h3 class="text-xl font-bold text-neutral-900 ml-4">
-              Quick Actions
-            </h3>
-          </div>
-
-          <div class="space-y-4">
-            <button
-              class="btn-secondary w-full flex items-center justify-center"
-            >
-              <SettingsIcon iconClass="h-5 w-5 mr-3" />
-              Account Settings
-            </button>
-
-            <button
-              class="btn-secondary w-full flex items-center justify-center"
-            >
-              <LockIcon iconClass="h-5 w-5 mr-3" />
-              Change Password
-            </button>
-
-            <button
-              class="btn-secondary w-full flex items-center justify-center"
-            >
-              <ChartBarIcon iconClass="h-5 w-5 mr-3" />
-              View Analytics
-            </button>
-
-            <button
-              class="btn-secondary w-full flex items-center justify-center"
-            >
-              <SupportIcon iconClass="h-5 w-5 mr-3" />
-              Get Support
-            </button>
           </div>
         </div>
       </div>
